@@ -322,7 +322,7 @@
           role: "Putri",
           address:
             "KPAD Pindad Utara K2234 Kel. Kebon Jayanti, Kec. Kiaracondong, Kota Bandung",
-          photo: "img/bride.jpg",
+          photo: "img/rere.jpg",
         },
         groom: {
           full: "Jabal Mufridiharja, S.Pd., S.T.",
@@ -334,7 +334,7 @@
           role: "Putra",
           address:
             "Jl. Asep Berlian No.37 Kel. Cicadas, Kec. Cibeunying Kidul, Kota Bandung",
-          photo: "img/groom.jpg",
+          photo: "img/jabal.jpg",
         },
         // TODO: ganti tanggal, lokasi, rekening, cerita & foto dengan data asli
         date: "2026-12-30T08:00:00",
@@ -372,14 +372,27 @@
           { bank: "BCA", no: "4373541934", name: "Jabal Mufridiharja" },
         ],
         gallery: [
-          "img/3.jpg",
-          "img/d1.jpg",
-          "img/d2.jpg",
           "img/5.jpg",
-          "img/d3.jpg",
+          "img/3.jpg",
           "img/4.jpg",
-          "img/1.jpg",
           "img/2.jpg",
+          "img/a1.jpg",
+          "img/a2.jpg",
+          "img/a3.jpg",
+          "img/a10.jpg",
+          "img/a4.jpg",
+          "img/a5.jpg",
+          "img/a6.jpg",
+          "img/a7.jpg",
+          "img/a8.jpg",
+          "img/a9.jpg",
+          "img/1.jpg",
+          "img/bride.jpg",
+
+          "img/jabal.jpg",
+          "img/groom.jpg",
+
+          "img/rere.jpg",
         ],
         story: [
           {
@@ -408,6 +421,27 @@
           },
         ],
       };
+      const GD = {
+        "img/og.jpg": [1200, 630],
+        "img/3.jpg": [1201, 1800],
+        "img/4.jpg": [1201, 1800],
+        "img/2.jpg": [1202, 1800],
+        "img/a1.jpg": [1202, 1800],
+        "img/a2.jpg": [1202, 1800],
+        "img/a3.jpg": [1202, 1800],
+        "img/1.jpg": [1800, 1202],
+        "img/a4.jpg": [1202, 1800],
+        "img/a5.jpg": [1202, 1800],
+        "img/a6.jpg": [1202, 1800],
+        "img/a7.jpg": [1202, 1800],
+        "img/a8.jpg": [1201, 1800],
+        "img/a9.jpg": [1202, 1800],
+        "img/5.jpg": [1800, 1202],
+        "img/d1.jpg": [900, 900],
+        "img/d2.jpg": [900, 900],
+        "img/d3.jpg": [900, 900],
+        "img/a10.jpg": [1800, 1202],
+      }; // ukuran foto galeri (lebar, tinggi); foto landscape otomatis tampil selebar grid
       /* =============================================== */
       const B = C.bride,
         G = C.groom,
@@ -474,7 +508,7 @@
           "galeri",
           "Our Gallery",
           "",
-          `<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-3 auto-rows-[9rem] sm:auto-rows-[12rem] lg:auto-rows-[9rem] gap-2 sm:gap-3">${C.gallery.map((g, i) => `<div class="rz ph rounded-2xl overflow-hidden cursor-zoom-in ${[0, 5].includes(i) ? "row-span-2" : ""} ${i == 3 ? "col-span-2" : ""}" style="--d:${(i % 4) * 0.1}s"><img src="${g}" loading="lazy" onerror="this.remove()" class="gl w-full h-full object-cover hover:scale-110 transition duration-700"></div>`).join("")}</div>`,
+          `<div class="columns-2 md:columns-3 gap-x-2 sm:gap-x-3">${C.gallery.map((g, i) => `<div class="rz ph break-inside-avoid mb-2 sm:mb-3 rounded-2xl overflow-hidden cursor-zoom-in" style="${GD[g] ? `aspect-ratio:${GD[g][0]}/${GD[g][1]};${GD[g][0] / GD[g][1] > 1.2 ? "column-span:all;" : ""}` : ""}--d:${(i % 3) * 0.1}s"><img src="${g}" loading="lazy" onerror="this.remove()" class="gl w-full h-full object-cover hover:scale-105 transition duration-700"></div>`).join("")}</div>`,
           "",
           "bg-n8",
         ) +
