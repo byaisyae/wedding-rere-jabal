@@ -19,8 +19,8 @@ const C = {
     nick: "Jabal",
     ig: "jabalmufrid",
     wa: "6287820237963",
-    father: "Syarifudin",
-    mother: "Supriyatini",
+    father: "Syarifudin, S.Ag.",
+    mother: "Supriyatini, S.Pd.",
     role: "Putra",
     address:
       "Jl. Asep Berlian No.37 Kel. Cicadas, Kec. Cibeunying Kidul, Kota Bandung",
