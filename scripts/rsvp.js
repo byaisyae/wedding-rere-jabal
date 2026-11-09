@@ -8,6 +8,21 @@ let WL = [],
 const W = () => WL;
 const uid = () =>
   Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+// waktu komentar: "Baru saja", "5 menit yang lalu", ... lalu tanggal lengkap bila sudah > 7 hari
+const ago = (t) => {
+  t = +t;
+  if (!t) return "";
+  const m = Math.floor((Date.now() - t) / 60000);
+  if (m < 1) return "Baru saja";
+  if (m < 60) return m + " menit yang lalu";
+  if (m < 1440) return Math.floor(m / 60) + " jam yang lalu";
+  if (m < 10080) return Math.floor(m / 1440) + " hari yang lalu";
+  return new Date(t).toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" });
+};
+const full = (t) =>
+  new Date(+t).toLocaleString("id-ID", { day: "numeric", month: "long", year: "numeric", hour: "2-digit", minute: "2-digit" });
+const tm = (t, cls) =>
+  +t ? `<time title="${full(t)}" class="${cls}">${ago(t)}</time>` : "";
 const IN =
   "w-full px-3 py-2 rounded-xl bg-n9/80 border border-sk-300/30 outline-none focus:border-sk-300 text-base";
 const draw = () => {
@@ -34,9 +49,9 @@ const draw = () => {
     .slice((wpg - 1) * PER, wpg * PER)
     .map((x) => {
       const rs = RL.filter((r) => r.w === x.id);
-      return `<div class="rounded-2xl bg-n9/80 border border-sk-300/20 p-4"><p class="font-semibold text-white">${esc(x.n)} <span class="text-[10px] ml-1 px-2 py-0.5 rounded-full bg-sk-300/20 text-sk-300">${esc(x.k)}${x.k !== "Tidak hadir" && x.j && x.j !== "-" ? " · " + esc(x.j) : ""}</span></p><p class="text-sm mt-1">${esc(x.m)}</p>
+      return `<div class="rounded-2xl bg-n9/80 border border-sk-300/20 p-4"><p class="font-semibold text-white">${esc(x.n)} <span class="text-[10px] ml-1 px-2 py-0.5 rounded-full bg-sk-300/20 text-sk-300">${esc(x.k)}${x.k !== "Tidak hadir" && x.j && x.j !== "-" ? " · " + esc(x.j) : ""}</span></p>${tm(x.t, "block text-[11px] text-white/50 mt-0.5")}<p class="text-sm mt-1">${esc(x.m)}</p>
   <button type="button" data-act="reply" data-id="${esc(x.id)}" class="mt-2 -ml-1 px-1 py-1 text-xs text-sk-300 hover:text-white transition">↩ Balas${rs.length ? ` · ${rs.length} balasan` : ""}</button>
-  ${rs.length ? `<div class="mt-2 space-y-2 border-l-2 border-sk-300/30 pl-3">${rs.map((r) => `<div><p class="text-xs font-semibold text-white">${esc(r.n)}</p><p class="text-xs mt-0.5 break-words">${esc(r.m)}</p></div>`).join("")}</div>` : ""}
+  ${rs.length ? `<div class="mt-2 space-y-2 border-l-2 border-sk-300/30 pl-3">${rs.map((r) => `<div><p class="text-xs font-semibold text-white">${esc(r.n)}${+r.t ? " " + tm(r.t, "font-normal text-[11px] text-white/50 ml-1") : ""}</p><p class="text-xs mt-0.5 break-words">${esc(r.m)}</p></div>`).join("")}</div>` : ""}
   ${RO === x.id ? `<form id="rf" data-id="${esc(x.id)}" class="mt-3 space-y-2"><input name="web" tabindex="-1" autocomplete="off" aria-hidden="true" class="hidden"><input id="rn" name="n" required minlength="2" maxlength="100" placeholder="Nama" class="${IN}"><textarea id="rm" name="m" required rows="2" maxlength="300" placeholder="Tulis balasan..." class="${IN}"></textarea><div class="flex gap-2"><button class="px-4 py-2 rounded-full bg-sk-300 text-n9 text-sm font-semibold hover:bg-white transition">Kirim Balasan</button><button type="button" data-act="cancel" class="px-4 py-2 rounded-full border border-sk-300/40 text-sm hover:bg-sk-300/10 transition">Batal</button></div></form>` : ""}</div>`;
     })
     .join("");
@@ -167,8 +182,9 @@ $("#wl").addEventListener("submit", async (e) => {
   const d = Object.fromEntries(new FormData(f));
   d.act = "reply";
   d.w = f.dataset.id;
+  d.t = Date.now();
   localStorage.setItem("rname", d.n);
-  const r = { w: d.w, n: d.n.trim(), m: d.m.trim() };
+  const r = { w: d.w, n: d.n.trim(), m: d.m.trim(), t: d.t };
   if (!C.rsvp) {
     RL.push(r);
     localStorage.setItem("replies", JSON.stringify(RL));

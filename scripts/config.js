@@ -28,7 +28,7 @@ const C = {
   },
   // TODO: ganti tanggal, lokasi, rekening, cerita & foto dengan data asli
   date: "2026-12-30T08:00:00",
-  rsvp: "https://script.google.com/macros/s/AKfycbyodnzRqBJE0Kvy5vc0SHNJUqDKdmHAJ4rZ4lNUVWc5rVaoaFL6mfpOFuO85fHEsiMi/exec", // URL Web App Google Apps Script (berakhiran /exec). Kosong = RSVP hanya disimpan di browser tamu
+  rsvp: "https://script.google.com/macros/s/AKfycbzVErmnQQrztPUVfuaMm1stCql9XwQEJVF01SzGfrVG-oJngqfkdt9NxttVMcnXN9lA/exec", // URL Web App Google Apps Script (berakhiran /exec). Kosong = RSVP hanya disimpan di browser tamu
   bg: {
     cover: "img/4.jpg",
     quote: "img/5.jpg",
