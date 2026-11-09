@@ -38,7 +38,7 @@ $("#app").innerHTML =
   ) +
   sec(
     "rsvp",
-    "RSVP &amp; Ucapan Doa",
+    "Rsvp &amp; Ucapan Doa",
     "Konfirmasi kehadiran dan sampaikan doa restu untuk kedua mempelai.",
     `<form id="f" class="rz text-left max-w-md mx-auto space-y-3">
  <input name="web" tabindex="-1" autocomplete="off" aria-hidden="true" class="hidden">
