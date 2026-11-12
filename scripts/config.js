@@ -45,7 +45,7 @@ const C = {
     },
     {
       t: "Resepsi",
-      time: "10.00 - 14.00 WIB",
+      time: "11.00 - 14.00 WIB",
       place: "LPTQ Jabar",
       addr: "Jl. AH. Nasution No. 247 KM 8, RT.03/RW.08, Karang Pamulang, Kec. Mandalajati, Kota Bandung, Jawa Barat 40194",
       map: "https://maps.app.goo.gl/tbRfviGo2Xn6nkbZA?g_st=ac",
