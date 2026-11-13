@@ -38,7 +38,7 @@ const C = {
   events: [
     {
       t: "Akad Nikah",
-      time: "08.00 - 09.00 WIB",
+      time: "07:00 WIB",
       place: "LPTQ Jabar",
       addr: "Jl. AH. Nasution No. 247 KM 8, RT.03/RW.08, Karang Pamulang, Kec. Mandalajati, Kota Bandung, Jawa Barat 40194",
       map: "https://maps.app.goo.gl/tbRfviGo2Xn6nkbZA?g_st=ac",
